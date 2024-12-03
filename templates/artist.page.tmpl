@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/static/images/favicon.ico">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>{{.Artist.Name}}</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1><a href="/"><span class="neonText">🍬</span> Groupie Tracker <span class="neonText">🍬</span></a></h1>
+        <div class="artistDetails">
+            <div class="artistCard">
+                <h2>🍓 {{.Artist.Name}} 🍓</h2>
+                <div class="artistContent">
+                    <img src="{{.Artist.Image}}" alt="Cover album" />
+                </div>
+                <div class="artistInfos">
+                    <h3>🍫 Members</h3>
+                    {{ range $member := .Artist.Members}}
+                    <ul>
+                        <li>{{$member}}</li>
+                    </ul>
+
+                    {{ end}}
+                    <h3>🍫 Creation Date : {{ .Artist.CreationDate }}</h3>
+                    <h3>🍫 First album : {{ .Artist.FirstAlbum }}</h3>
+
+
+                </div>
+            </div>
+            <div class="dateLocations">
+                {{ range $location, $dates := .Relations.DatesLocations}}
+                <div class="location">
+                    <h3>🍭 {{$location}}</h3>
+                    {{ range $date := $dates}}
+                    <h4>{{$date}}</h4>
+                    {{end}}
+                </div>
+                {{ end }}
+            </div>
+        </div>
+        <div>
+            <iframe width="500" height="300" src="https://api.maptiler.com/maps/basic-v2/?key=R4ekZroMZ5pJPn1tBISF#1.0/0.00000/0.00000"></iframe>
+        </div>
+    </div>
+    <footer><span>Made by <a href="https://github.com/dylanBourcier" target="_blank">Dylan Bourcier</a>, <a
+                href="https://github.com/AlexandreJoly76" target="_blank">Alexandre Joly</a> and <a
+                href="https://github.com/Dahreau" target="_blank">Daro Samaky</a>.</span></footer>
+</body>
+
+</html>
